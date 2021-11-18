@@ -1,0 +1,50 @@
+body {
+  background-color: #fff;
+  font-family: 'Roboto', 'Ariel', sans-serif;
+}
+
+h1 {
+  text-align: center;
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.card {
+  margin: 0 auto;
+  text-align: center;
+  margin: 80px auto;
+}
+
+button {
+  padding: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 24px;
+  background-color: #593C8F;
+  color: white;
+}
+
+button:hover {
+  background-color: #AA7BE0;
+}
+
+header a {
+  color: #AA7BE0;
+}
+
+.wrapper {
+  display: block;
+  margin: 80px auto;
+  text-align: center;
+  transition: 0.3s;
+  width: 70vw;
+  height: 500px;
+}
+
+.wrapper {
+  padding-top: 20px;
+}
+
+.card-contents {
+  padding: 5px 5px 10px 5px;
+}
