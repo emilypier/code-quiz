@@ -67,14 +67,22 @@ header a {
   padding-top: 20px;
 }
 
-#answers {
-  display: block;
-}
-
 .card-contents {
   padding: 5px 5px 10px 5px;
 }
 
 .hide {
   display: none;
+}
+
+#initials {
+  font-size: 18px;
+}
+
+.correct {
+  color: green;
+}
+
+.wrong {
+  color: red;
 }

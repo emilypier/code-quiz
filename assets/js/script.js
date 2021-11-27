@@ -3,21 +3,42 @@ const nextButton = document.getElementById('next-btn');
 const questionContainerElement = document.getElementById('question-container');
 const questionElement = document.getElementById('question');
 const answerButtonsElement= document.getElementById('answer-buttons');
-
+var timerElement = document.getElementById("timer")
+let timeLeft = 80;
 let shuffledQuestions, currentQuestionIndex //default both of these values to undefined
 
-startButton.addEventListener('click', startGame);
-nextButton.addEventListener('click', () => {
-  currentQuestionIndex++
-  setNextQuestion()
-})
+function timer() {
+  const timer = setInterval(function(){ 
+    timeLeft = timeLeft - 1;
+    timerElement.textContent = "Seconds left: " + timeLeft
+    if (timeLeft === 0){ //stops timer at 0
+      clearInterval(timer); 
+      //fubnction to end game or show high scores
+    }
+  }, 1000);
+}
 
 function startGame() {
   startButton.classList.add('hide'); //hide start button
+  timer();
   shuffledQuestions = questions.sort(() => Math.random() - .5) //shuffles all questions
   currentQuestionIndex = 0 //starting on first question in shuffled uestions array.
   questionContainerElement.classList.remove('hide'); //unhides question container
   setNextQuestion(); 
+}
+
+startButton.addEventListener('click', startGame);
+
+function showNextQuestion() {
+  currentQuestionIndex++
+  setNextQuestion()
+}
+
+function resetState() { //reset everything to default
+  nextButton.classList.add('hide')
+  while (answerButtonsElement.firstChild) { //removing child elelments in answer buttons element
+    answerButtonsElement.removeChild(answerButtonsElement.firstChild)
+  }
 }
 
 function setNextQuestion() {
@@ -39,13 +60,6 @@ function showQuestion(question) { //question object refers to questions array be
   })
 }
 
-function resetState() { //reset everything to default
-  nextButton.classList.add('hide')
-  while (answerButtonsElement.firstChild) { //removing child elelments in answer buttons element
-    answerButtonsElement.removeChild(answerButtonsElement.firstChild)
-  }
-}
-
 function selectAnswer(e) {
   const selectedButton = e.target
   const correct = selectedButton.dataset.correct
@@ -54,12 +68,14 @@ function selectAnswer(e) {
     setStatusClass(button, button.dataset.correct)
   })
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
-    nextButton.classList.remove('hide')
+    showNextQuestion()
+    // nextButton.classList.remove('hide')
   } else{
-    startButton.innerText = 'Restart'
-    startButton.classList.remove('hide')
+    showNextQuestion() 
+    // startButton.innerText = 'Restart'
+    // startButton.classList.remove('hide')
   }
-  nextButton.classList.remove('hide')
+  // nextButton.classList.remove('hide')
 }
 
 
@@ -99,15 +115,15 @@ const questions = [
     ]
   },
   
-  {
-    question: "Arrays in JavaScript can be used to store _____.",
-    options: [
-      { text: "numbers and strings", correct: false},
-      { text: "other arrays", correct: false },
-      { text: "booleans", correct: false },
-      { text: "all of the above", correct: true }
-    ]
-  },
+  // {
+  //   question: "Arrays in JavaScript can be used to store _____.",
+  //   options: [
+  //     { text: "numbers and strings", correct: false},
+  //     { text: "other arrays", correct: false },
+  //     { text: "booleans", correct: false },
+  //     { text: "all of the above", correct: true }
+  //   ]
+  // },
 
   {
     question: "String values must be enclosed within _____. when being assigned to variables.",
@@ -129,3 +145,11 @@ const questions = [
     ]
   }
 ];
+
+// saving to localStorage
+localStorage.setItem("score", 1);
+
+
+// getting value from localStorage at a given key
+const localStorageVal = localStorage.getItem('score');
+console.log('this is my localstorage val', localStorageVal);
