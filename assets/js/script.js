@@ -3,18 +3,41 @@ const nextButton = document.getElementById('next-btn');
 const questionContainerElement = document.getElementById('question-container');
 const questionElement = document.getElementById('question');
 const answerButtonsElement= document.getElementById('answer-buttons');
+const initialsInput = document.getElementById('initals');
 var timerElement = document.getElementById("timer")
-let timeLeft = 80;
+let timeLeft = 10;
 let shuffledQuestions, currentQuestionIndex //default both of these values to undefined
 
+function endGame() {
+  initialsInput.classList.remove('hide');
+}
+
+
 function timer() {
-  const timer = setInterval(function(){ 
+  const timer = setInterval(function() { 
     timeLeft = timeLeft - 1;
-    timerElement.textContent = "Seconds left: " + timeLeft
-    if (timeLeft === 0){ //stops timer at 0
-      clearInterval(timer); 
-      //fubnction to end game or show high scores
+    if (timeLeft > 0) {
+      timerElement.textContent = "Seconds left: " + timeLeft;
+      timeLeft--;
     }
+      
+    else { 
+      timerElement.textContent = "";
+      clearInterval(timer); // stops timer 
+      displayMessage ();
+    }
+    
+    // if (timeLeft === 0){ //stops timer at 0
+    //   clearInterval(timer); 
+    //   endGame();
+    // }
+    // else { 
+    //   timerElement.textContent = "";
+    //   clearInterval(timeInterval);
+    //   displayMessage ();
+    // }
+
+
   }, 1000);
 }
 
