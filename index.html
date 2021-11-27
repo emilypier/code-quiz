@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Coding Quiz</title>
   </head>
   <body>
     <div class="container">
@@ -15,9 +16,10 @@
         <p id="highscores">View high scores</p>
         <p id="timer">Time:</p>
       </nav>
-      <button id="start-btn">Start Quiz</button>
       <div id="question-container" class="hide">
-        <div id="question"></div>
+        <div id="question">
+          <h1>question</h1>
+        </div>
         <div id="answer-buttons">
           <button class="btn">1</button>
           <button class="btn">2</button>
@@ -25,6 +27,8 @@
           <button class="btn">4</button>
         </div>
       </div>
+      <button id="start-btn" class="start-btn btn">Start Quiz</button>
+      <button id="next-btn" class="next-btn btn hide">Next</button>
     </div>
   <script src="./assets/js/script.js"></script>
   </body>

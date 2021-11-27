@@ -18,6 +18,11 @@ h1 {
   font-weight: 700;
 }
 
+.question p {
+  font-size: 34px;
+  font-weight: 700;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -27,12 +32,6 @@ nav {
   position: relative;
   height: 25px;
   width: 100px;
-}
-
-.card {
-  margin: 0 auto;
-  text-align: center;
-  margin: 80px auto;
 }
 
 #start-btn {
@@ -68,7 +67,7 @@ header a {
   padding-top: 20px;
 }
 
-#options {
+#answers {
   display: block;
 }
 

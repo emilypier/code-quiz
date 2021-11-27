@@ -1,58 +1,87 @@
-var startButton = document.getElementById('start-btn');
-var nextButton = document.getElementById('next-btn');
-var questionContainerEl = document.getElementById('question-container');
-var questionEl = document.getElementById('question')
-var answerButtonsEl= document.getElementById('answer-buttons')
-var shuffledQuestions, currentQuestionIndex //default both of these values to undefined
+const startButton = document.getElementById('start-btn');
+const nextButton = document.getElementById('next-btn');
+const questionContainerElement = document.getElementById('question-container');
+const questionElement = document.getElementById('question');
+const answerButtonsElement= document.getElementById('answer-buttons');
+
+let shuffledQuestions, currentQuestionIndex //default both of these values to undefined
 
 startButton.addEventListener('click', startGame);
+nextButton.addEventListener('click', () => {
+  currentQuestionIndex++
+  setNextQuestion()
+})
 
 function startGame() {
   startButton.classList.add('hide'); //hide start button
   shuffledQuestions = questions.sort(() => Math.random() - .5) //shuffles all questions
-  currentQuestionIndex = 0
-  questionContainerEl.classList.remove('hide'); //unhides question container
+  currentQuestionIndex = 0 //starting on first question in shuffled uestions array.
+  questionContainerElement.classList.remove('hide'); //unhides question container
   setNextQuestion(); 
 }
 
 function setNextQuestion() {
   resetState() //reset everything to default state
+  showQuestion(shuffledQuestions[currentQuestionIndex])
+};
 
-  }
-  showQuestion(shuffledQuestions[currentQuestionIndex]) //shows question
-}
-
-function showQuestion(question) { //question object 
-  questionElement.innerText = question.question
-  questions.answers.forEach(asnwers => {
-    var button = document.createElement('button')
-    button.innerText = answer.textbutton.classList.add('btn')
+function showQuestion(question) { //question object refers to questions array below
+  questionElement.innerText = question.question //pointing to question array, then nested question array
+  question.answers.forEach(answer => { //bringing answers to buttons on page
+    const button = document.createElement('button')
+    button.innerText = answer.text
+    button.classList.add('btn');
     if (answer.correct) {
       button.dataset.correct = answer.correct
     }
     button.addEventListener('click', selectAnswer)
     answerButtonsElement.appendChild(button)
-
   })
 }
 
 function resetState() { //reset everything to default
-  nextbutton.classList.add('hide');
-  while (answerButtonsEl.firstChild) {
-    answerButtonsEl.removeChild
-    answerButtonsEl.firstChild);
+  nextButton.classList.add('hide')
+  while (answerButtonsElement.firstChild) { //removing child elelments in answer buttons element
+    answerButtonsElement.removeChild(answerButtonsElement.firstChild)
   }
 }
 
-function selectanswer(e) {
+function selectAnswer(e) {
+  const selectedButton = e.target
+  const correct = selectedButton.dataset.correct
+  setStatusClass(document.body, correct)
+  Array.from(answerButtonsElement.children).forEach(button => { //converting to array
+    setStatusClass(button, button.dataset.correct)
+  })
+  if (shuffledQuestions.length > currentQuestionIndex + 1) {
+    nextButton.classList.remove('hide')
+  } else{
+    startButton.innerText = 'Restart'
+    startButton.classList.remove('hide')
+  }
+  nextButton.classList.remove('hide')
+}
 
+
+function setStatusClass(element, correct) {
+  clearStatusClass(element)
+  if (correct) {
+    element.classList.add('correct')
+  } else {
+    element.classList.add('wrong')
+  }
+}
+
+function clearStatusClass(element) {
+  element.classList.remove('correct')
+  element.classList.remove('wrong')
 }
 
 //quiz questions
-var questions = [
+const questions = [
   {
     question: "Commonly used data types DO not include:",
-    options: [
+    answers: [
       { text: "strings", correct: false },
       { text: "booleans", correct: false },
       { text: "alerts", correct: true },
@@ -62,7 +91,7 @@ var questions = [
 
   {  
     question: "The condition in an if / else statement is enclosed with _____.",
-    options: [
+    answers: [
       { text: "quotes", correct: false },
       { text: "curly brackets", correct: false },
       { text: "parenthesis", correct: true },
@@ -82,7 +111,7 @@ var questions = [
 
   {
     question: "String values must be enclosed within _____. when being assigned to variables.",
-    options: [
+    answers: [
       { text: "commas", correct: false },
       { text: "curly brackets", correct: false },
       { text: "quotes", correct: true },
@@ -92,7 +121,7 @@ var questions = [
 
   {
     question: "A very useful tool used during development and debugging for printing content to the debugger is:",
-    options: [
+    answers: [
       { text: "JavaScript", correct: false },
       { text: "terminal/bash", correct: false },
       { text: "for loops", correct: false },
