@@ -11,9 +11,9 @@
     <title>Coding Quiz</title>
   </head>
   <body>
-    <div class="container">
+    <div id="container">
       <nav>
-        <p id="highscores">View high scores</p>
+        <a href="./highscores.html" id="highscores">View high scores</a> 
         <p id="timer"></p>
       </nav>
       <div id="question-container" class="hide">
@@ -28,8 +28,22 @@
         </div>
       </div>
       <button id="start-btn" class="start-btn btn">Start Quiz</button>
-      <button id="next-btn" class="next-btn btn hide">Next</button>
-      <input id="initials" class= "hide"></input>
+      <!-- scores-container becomes visible after quiz/when time runs out -->
+      <div class="scores-container hide">
+        <p>Add your intials:</p>
+        <input id="initials">
+        <h1>High Scores</h1>
+        <table>
+          <tr>
+            <th>Initials</th>
+            <th>Score</th>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
     </div>
   <script src="./assets/js/script.js"></script>
   </body>

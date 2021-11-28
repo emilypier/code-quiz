@@ -17,22 +17,29 @@ h1 {
   font-size: 34px;
   font-weight: 700;
 }
-
-.question p {
-  font-size: 34px;
-  font-weight: 700;
-}
-
+/* high scores and timer START*/
 nav {
   display: flex;
   justify-content: space-between;
 }
 
 #timer {
-  position: relative;
-  height: 25px;
-  width: 100px;
+  height: 36px;
+  margin: 0;
 }
+
+nav a:link {
+  text-decoration: none;
+}
+
+nav a:active {
+  color:#6d4da8;
+}
+
+nav a:hover{
+  color: #bb7be0;
+}
+/* high scores and timer END*/
 
 #start-btn {
   text-align: center;
@@ -58,9 +65,15 @@ header a {
   color: #bb7be0;
 }
 
-.container {
+#question-container {
+  font-size: 34px;
+  font-weight: 700;
+}
+
+#container {
   margin: 80px auto;
-  text-align: center;
+  /* text-align: center; */
+  font-size: 18px;
   transition: 0.3s;
   width: 70%;
   height: 500px;

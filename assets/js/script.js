@@ -1,16 +1,17 @@
 const startButton = document.getElementById('start-btn');
-const nextButton = document.getElementById('next-btn');
 const questionContainerElement = document.getElementById('question-container');
 const questionElement = document.getElementById('question');
 const answerButtonsElement= document.getElementById('answer-buttons');
-const initialsInput = document.getElementById('initals');
-var timerElement = document.getElementById("timer")
-let timeLeft = 10;
+const initialsInput = document.getElementById('scores-container');
+var timerElement = document.getElementById('timer');
+let timeLeft = 90;
 let shuffledQuestions, currentQuestionIndex //default both of these values to undefined
 
 function endGame() {
+  console.log('this worked');
+  questionContainerElement.classList.add('hide');
   initialsInput.classList.remove('hide');
-}
+};
 
 
 function timer() {
@@ -24,20 +25,8 @@ function timer() {
     else { 
       timerElement.textContent = "";
       clearInterval(timer); // stops timer 
-      displayMessage ();
+      endGame();
     }
-    
-    // if (timeLeft === 0){ //stops timer at 0
-    //   clearInterval(timer); 
-    //   endGame();
-    // }
-    // else { 
-    //   timerElement.textContent = "";
-    //   clearInterval(timeInterval);
-    //   displayMessage ();
-    // }
-
-
   }, 1000);
 }
 
@@ -55,17 +44,20 @@ startButton.addEventListener('click', startGame);
 function showNextQuestion() {
   currentQuestionIndex++
   setNextQuestion()
+
+  if (currentQuestionIndex === 0) {
+    endGame();
+  }
 }
 
 function resetState() { //reset everything to default
-  nextButton.classList.add('hide')
-  while (answerButtonsElement.firstChild) { //removing child elelments in answer buttons element
+  while (answerButtonsElement.firstChild) { //removing child elements in answer buttons element
     answerButtonsElement.removeChild(answerButtonsElement.firstChild)
   }
 }
 
 function setNextQuestion() {
-  resetState() //reset everything to default state
+  resetState() //reset everything to default state, make questions black again
   showQuestion(shuffledQuestions[currentQuestionIndex])
 };
 
@@ -92,13 +84,9 @@ function selectAnswer(e) {
   })
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
     showNextQuestion()
-    // nextButton.classList.remove('hide')
   } else{
     showNextQuestion() 
-    // startButton.innerText = 'Restart'
-    // startButton.classList.remove('hide')
   }
-  // nextButton.classList.remove('hide')
 }
 
 
