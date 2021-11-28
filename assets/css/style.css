@@ -17,29 +17,6 @@ h1 {
   font-size: 34px;
   font-weight: 700;
 }
-/* high scores and timer START*/
-nav {
-  display: flex;
-  justify-content: space-between;
-}
-
-#timer {
-  height: 36px;
-  margin: 0;
-}
-
-nav a:link {
-  text-decoration: none;
-}
-
-nav a:active {
-  color:#6d4da8;
-}
-
-nav a:hover{
-  color: #bb7be0;
-}
-/* high scores and timer END*/
 
 #start-btn {
   text-align: center;
@@ -49,6 +26,7 @@ nav a:hover{
 button {
   display: block;
   padding: 10px;
+  border: none;
   border-radius: 20px;
   margin: 10px 0;
   cursor: pointer;
@@ -88,8 +66,40 @@ header a {
   display: none;
 }
 
-#initials {
+/* high scores and timer START*/
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+#timer {
+  height: 36px;
+  margin: 0;
+  color: #6d4da8;
+}
+
+nav button {
+  color: #6d4da8;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+}
+/* high scores and timer END*/
+
+.scores-container {
   font-size: 18px;
+}
+
+td, th {
+  font-size: 21px;
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
 }
 
 .correct {

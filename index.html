@@ -13,7 +13,7 @@
   <body>
     <div id="container">
       <nav>
-        <a href="./highscores.html" id="highscores">View high scores</a> 
+        <button id="highscores-button">View high scores</button> 
         <p id="timer"></p>
       </nav>
       <div id="question-container" class="hide">
@@ -29,9 +29,12 @@
       </div>
       <button id="start-btn" class="start-btn btn">Start Quiz</button>
       <!-- scores-container becomes visible after quiz/when time runs out -->
-      <div class="scores-container hide">
-        <p>Add your intials:</p>
-        <input id="initials">
+      <div id= "scores-container" class= "hide">
+        <form>
+          <p>Add your intials:</p>
+          <input id="initials" placeholder="type initials here"/>
+          <button id="sign-up">Sign Up</button>
+        </form>
         <h1>High Scores</h1>
         <table>
           <tr>
@@ -39,12 +42,13 @@
             <th>Score</th>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
+            <td>EP</td>
+            <td>score</td>
           </tr>
         </table>
       </div>
     </div>
   <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/scores-script.js"></script>
   </body>
 </html>

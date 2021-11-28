@@ -2,7 +2,6 @@ const startButton = document.getElementById('start-btn');
 const questionContainerElement = document.getElementById('question-container');
 const questionElement = document.getElementById('question');
 const answerButtonsElement= document.getElementById('answer-buttons');
-const initialsInput = document.getElementById('scores-container');
 var timerElement = document.getElementById('timer');
 let timeLeft = 90;
 let shuffledQuestions, currentQuestionIndex //default both of these values to undefined
@@ -12,7 +11,6 @@ function endGame() {
   questionContainerElement.classList.add('hide');
   initialsInput.classList.remove('hide');
 };
-
 
 function timer() {
   const timer = setInterval(function() { 
@@ -126,15 +124,15 @@ const questions = [
     ]
   },
   
-  // {
-  //   question: "Arrays in JavaScript can be used to store _____.",
-  //   options: [
-  //     { text: "numbers and strings", correct: false},
-  //     { text: "other arrays", correct: false },
-  //     { text: "booleans", correct: false },
-  //     { text: "all of the above", correct: true }
-  //   ]
-  // },
+  {
+    question: "Arrays in JavaScript can be used to store _____.",
+    answers: [
+      { text: "numbers and strings", correct: false},
+      { text: "other arrays", correct: false },
+      { text: "booleans", correct: false },
+      { text: "all of the above", correct: true }
+    ]
+  },
 
   {
     question: "String values must be enclosed within _____. when being assigned to variables.",
@@ -156,11 +154,3 @@ const questions = [
     ]
   }
 ];
-
-// saving to localStorage
-localStorage.setItem("score", 1);
-
-
-// getting value from localStorage at a given key
-const localStorageVal = localStorage.getItem('score');
-console.log('this is my localstorage val', localStorageVal);
