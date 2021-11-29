@@ -4,7 +4,7 @@
 
 * Timed Quiz to learn basic web development concepts.
 
-![Image of code-quiz.](./assests/code-quiz-screenshot.png)
+![Image of code-quiz.](/assets/code-quiz-screenshot.png)
 
 ## Languages used
 
