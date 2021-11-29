@@ -1,34 +1,36 @@
-const startButton = document.getElementById('start-btn');
-const questionContainerElement = document.getElementById('question-container');
-const questionElement = document.getElementById('question');
-const answerButtonsElement= document.getElementById('answer-buttons');
+const startButton = document.querySelector('#start-btn');
+const questionContainerElement = document.querySelector('#question-container');
+const questionElement = document.querySelector('#question');
+const answerButtonsElement= document.querySelector('#answer-buttons');
+const scoresContainerElement = document.querySelector('#scores-container');
 var timerElement = document.getElementById('timer');
-let timeLeft = 90;
+let timeLeft = 30;
 let shuffledQuestions, currentQuestionIndex //default both of these values to undefined
 
 function endGame() {
-  console.log('this worked');
   questionContainerElement.classList.add('hide');
-  initialsInput.classList.remove('hide');
+  scoresContainerElement.classList.remove('hide');
+  timerElement.classList.add('hide');
 };
 
 function timer() {
   const timer = setInterval(function() { 
-    timeLeft = timeLeft - 1;
+    timeLeft = timeLeft - .0; //changed to .0 because 1 made it count down by 2 secs
     if (timeLeft > 0) {
-      timerElement.textContent = "Seconds left: " + timeLeft;
-      timeLeft--;
+      timerElement.textContent = "Time: " + timeLeft;
+      timeLeft--
     }
       
     else { 
-      timerElement.textContent = "";
+      timerElement.textContent = "Time's up!";
       clearInterval(timer); // stops timer 
       endGame();
     }
   }, 1000);
-}
+};
 
 function startGame() {
+  scoresContainerElement.classList.add("hide");
   startButton.classList.add('hide'); //hide start button
   timer();
   shuffledQuestions = questions.sort(() => Math.random() - .5) //shuffles all questions
@@ -48,14 +50,14 @@ function showNextQuestion() {
   }
 }
 
-function resetState() { //reset everything to default
-  while (answerButtonsElement.firstChild) { //removing child elements in answer buttons element
+function resetState() {
+  while (answerButtonsElement.firstChild) { //removing children in answer buttons el. removes placeholder buttons
     answerButtonsElement.removeChild(answerButtonsElement.firstChild)
   }
 }
 
 function setNextQuestion() {
-  resetState() //reset everything to default state, make questions black again
+  resetState() 
   showQuestion(shuffledQuestions[currentQuestionIndex])
 };
 
@@ -69,20 +71,21 @@ function showQuestion(question) { //question object refers to questions array be
       button.dataset.correct = answer.correct
     }
     button.addEventListener('click', selectAnswer)
-    answerButtonsElement.appendChild(button)
+    answerButtonsElement.appendChild(button);
   })
 }
 
-function selectAnswer(e) {
-  const selectedButton = e.target
-  const correct = selectedButton.dataset.correct
+function selectAnswer(event) {
+  const selectedButton = event.target
+  const correct = selectedButton.dataset.correct //checks if selected answer is correct
   setStatusClass(document.body, correct)
   Array.from(answerButtonsElement.children).forEach(button => { //converting to array
-    setStatusClass(button, button.dataset.correct)
+    setStatusClass(button, button.dataset.correct);
   })
   if (shuffledQuestions.length > currentQuestionIndex + 1) {
-    showNextQuestion()
-  } else{
+    showNextQuestion() 
+  }
+  else {
     showNextQuestion() 
   }
 }
@@ -91,15 +94,17 @@ function selectAnswer(e) {
 function setStatusClass(element, correct) {
   clearStatusClass(element)
   if (correct) {
-    element.classList.add('correct')
+    questionElement.classList.add('correct')
   } else {
-    element.classList.add('wrong')
+    questionElement.classList.add('wrong')
+    //deduct 10 seconds from score
+
   }
 }
 
 function clearStatusClass(element) {
-  element.classList.remove('correct')
-  element.classList.remove('wrong')
+  questionElement.classList.remove('correct')
+  questionElement.classList.remove('wrong')
 }
 
 //quiz questions

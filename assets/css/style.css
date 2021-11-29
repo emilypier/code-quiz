@@ -70,6 +70,7 @@ header a {
 nav {
   display: flex;
   justify-content: space-between;
+  padding: 10px 0;
 }
 
 #timer {
@@ -83,12 +84,20 @@ nav button {
   background-color: #fff;
   border: none;
   cursor: pointer;
-  font-size: 24px;
+  margin: 0;
+  padding: 0;
+  border-radius: 10px;
 }
 /* high scores and timer END*/
 
 .scores-container {
   font-size: 18px;
+}
+
+input {
+  font-size: 18px;
+  height: 50px;
+  font-family: 'Roboto', 'Ariel', sans-serif;
 }
 
 td, th {
@@ -100,6 +109,18 @@ td, th {
 
 tr:nth-child(even) {
   background-color: #dddddd;
+}
+
+#scores-container {
+  text-align: center;
+}
+
+table {
+  align-items: center;
+}
+
+form button {
+  display: inline;
 }
 
 .correct {

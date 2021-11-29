@@ -1,17 +1,26 @@
-var highScoresButton = document.querySelector("#scores-container");
-var initialsInput = document.querySelector("#initials");
-var doneButton = document.querySelector("#done");
+var highScoresButton = document.querySelector("#highscores-button");
+var doneButton = document.querySelector("#done-button");
+var initialsInput = document.querySelector("#initials-input");
 
 
-//pulls up scores when "View High Scores" is clicked
-highScoresButton.addEventListener('click', endGame());
+doneButton.addEventListener('click', function(event) {
+  event.preventDefault();
+});
 
-
-// saving initials to localStorage
-const saveIntials = function() {
+//saves initials to localStorage
+function saveInitials() {
   localStorage.setItem("initials", 1)
 };
 
-// getting initals from localStorage at a given key
-localStorage.getItem('initials');
-console.log('this is my localstorage val', localStorageVal);
+//gets initals from localStorage at a given key 
+var player = { userInitials:initalsInput.value.trim() };
+
+localStorage.setItem("player", JSON.stringify(player));
+
+// document.getElementById('intials-input').innerHTML = 'initials';
+// console.log('this is my localstorage value');
+
+// function endGame() {
+//   questionContainerElement.classList.add('hide');
+//   scoresContainerElement.classList.remove('hide');
+// };

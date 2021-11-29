@@ -21,19 +21,18 @@
           <h1>question</h1>
         </div>
         <div id="answer-buttons">
-          <button class="btn">1</button>
-          <button class="btn">2</button>
-          <button class="btn">3</button>
-          <button class="btn">4</button>
+          <button class="btn"></button>
+          <button class="btn"></button>
+          <button class="btn"></button>
+          <button class="btn"></button>
         </div>
       </div>
       <button id="start-btn" class="start-btn btn">Start Quiz</button>
       <!-- scores-container becomes visible after quiz/when time runs out -->
-      <div id= "scores-container" class= "hide">
-        <form>
-          <p>Add your intials:</p>
+      <div id="scores-container" class="hide">
+        <form id="initials-form">
           <input id="initials" placeholder="type initials here"/>
-          <button id="sign-up">Sign Up</button>
+          <button id="done-button">Done</button>
         </form>
         <h1>High Scores</h1>
         <table>
@@ -42,8 +41,8 @@
             <th>Score</th>
           </tr>
           <tr>
-            <td>EP</td>
-            <td>score</td>
+            <td id="intials-input">EP</td>
+            <td id="score">score</td>
           </tr>
         </table>
       </div>
