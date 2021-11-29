@@ -15,6 +15,7 @@
 * JavaScript
 
 ## Link to quiz
+https://emilypier.github.io/code-quiz/
 
 ## Made by
 
