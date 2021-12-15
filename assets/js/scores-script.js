@@ -7,18 +7,19 @@ doneButton.addEventListener('click', function(event) {
   event.preventDefault();
 });
 
-//saves initials to localStorage
+//setItem(key, value). save initials to localStorage
 function saveInitials() {
   localStorage.setItem("initials", 1)
 };
 
-//gets initals from localStorage at a given key 
-var player = { userInitials:initalsInput.value.trim() };
+//getItem(key)
 
-localStorage.setItem("player", JSON.stringify(player));
+//removeItem(key)
 
-// document.getElementById('intials-input').innerHTML = 'initials';
-// console.log('this is my localstorage value');
+//key(index)
+
+
+
 
 // function endGame() {
 //   questionContainerElement.classList.add('hide');
