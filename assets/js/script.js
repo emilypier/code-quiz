@@ -6,7 +6,9 @@ const scoresContainerElement = document.querySelector("#scores-container");
 var timerElement = document.getElementById("timer");
 let timeLeft = 75;
 let shuffledQuestions;
-var currentQuestionIndex = 0; //default both of these values to undefined
+var currentQuestionIndex = 0;
+var highScoresButton = document.querySelector("#highscores-button");
+var doneButton = document.querySelector("#done-button");
 
 //quiz questions
 const questions = [
@@ -16,55 +18,39 @@ const questions = [
     answer: "booleans",
   },
 
-  // {
-  //   question: "The condition in an if / else statement is enclosed with _____.",
-  //   answers: [
-  //     { text: "quotes", correct: false },
-  //     { text: "curly brackets", correct: false },
-  //     { text: "parenthesis", correct: true },
-  //     { text: "square brackets", correct: false },
-  //   ],
-  // },
+  {
+    question: "The condition in an if / else statement is enclosed with _____.",
+    choices: ["quotes", "curly brackets", "parenthesis", "square brackets"],
+    answer: "parenthesis"
+  },
 
-  // {
-  //   question: "Arrays in JavaScript can be used to store _____.",
-  //   answers: [
-  //     { text: "numbers and strings", correct: false },
-  //     { text: "other arrays", correct: false },
-  //     { text: "booleans", correct: false },
-  //     { text: "all of the above", correct: true },
-  //   ],
-  // },
+  {
+    question: "Arrays in JavaScript can be used to store _____.",
+    choices: ["numbers and strings", "other arrays", "booleans", "all of the above"],
+    answer: "all of the above"
+  },
 
-  // {
-  //   question:
-  //     "String values must be enclosed within _____. when being assigned to variables.",
-  //   answers: [
-  //     { text: "commas", correct: false },
-  //     { text: "curly brackets", correct: false },
-  //     { text: "quotes", correct: true },
-  //     { text: "parenthesis", correct: false },
-  //   ],
-  // },
+  {
+    question: "String values must be enclosed within _____. when being assigned to variables.",
+    choices: ["commas", "curly brackets", "quotes", "parenthesis"],
+    answer: "quotes"
+  },
 
-  // {
-  //   question:
-  //     "A very useful tool used during development and debugging for printing content to the debugger is:",
-  //   answers: [
-  //     { text: "JavaScript", correct: false },
-  //     { text: "terminal/bash", correct: false },
-  //     { text: "for loops", correct: false },
-  //     { text: "console.log", correct: true },
-  //   ],
-  // },
+  {
+    question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+    choices: ["JavaScript", "terminal/bash", "for loops", "console.log" ],
+    answer: "console.log"
+  }
 ];
 
-function endGame() {
-  questionContainerElement.classList.add("hide");
-  scoresContainerElement.classList.remove("hide");
-  timerElement.classList.add("hide");
-  clearInterval(timer); // stops timer
-  //.log(timeLeft);
+function startGame() {
+  scoresContainerElement.classList.add("hide");
+  startButton.classList.add("hide"); //hide start button
+  timer();
+  //shuffledQuestions = questions.sort(() => Math.random() - .5) //shuffles all questions
+  //starting on first question in shuffled questions array.
+  questionContainerElement.classList.remove("hide"); //unhides question container
+  showQuestion();
 }
 
 function timer() {
@@ -80,18 +66,6 @@ function timer() {
     }
   }, 1000);
 }
-
-function startGame() {
-  scoresContainerElement.classList.add("hide");
-  startButton.classList.add("hide"); //hide start button
-  timer();
-  //shuffledQuestions = questions.sort(() => Math.random() - .5) //shuffles all questions
-  //starting on first question in shuffled uestions array.
-  questionContainerElement.classList.remove("hide"); //unhides question container
-  showQuestion();
-}
-
-startButton.addEventListener("click", startGame);
 
 function showQuestion() {
   //question object refers to questions array below
@@ -109,6 +83,7 @@ function showQuestion() {
     answerButtonsElement.appendChild(button);
   });
 }
+
 
 function selectAnswer() {
   const selectedButton = this.value;
@@ -128,7 +103,7 @@ function selectAnswer() {
   } else {
     showQuestion();
   }
-}
+};
 
 function setStatusClass(element, correct) {
   clearStatusClass(element);
@@ -144,9 +119,13 @@ function clearStatusClass(element) {
   questionElement.classList.remove("wrong");
 }
 
-var highScoresButton = document.querySelector("#highscores-button");
-var doneButton = document.querySelector("#done-button");
-
+function endGame() {
+  questionContainerElement.classList.add("hide");
+  scoresContainerElement.classList.remove("hide");
+  timerElement.classList.add("hide");
+  clearInterval(timer); // stops timer
+  //.log(timeLeft);
+}
 
 //setItem(key, value). save initials to localStorage
 function saveInitials() {
@@ -165,7 +144,9 @@ function saveInitials() {
   // localStorage.setItem("highscores", highscores);
 }
 
+startButton.addEventListener("click", startGame);
 doneButton.addEventListener("click", saveInitials);
+
 //getItem(key)
 
 //removeItem(key)
