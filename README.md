@@ -1,22 +1,22 @@
-### Code quiz
+# Code quiz
+![MIT license](https://img.shields.io/badge/license-MIT-yellow)
 
-## About
-
-* Timed quiz to learn basic web development concepts.
+## Description
+Timed quiz to learn basic web development concepts and saves users' scores and initals into a scoreboard.
 
 ![Image of code-quiz.](/assets/code-quiz-screenshot.png)
 
-## Languages used
-
+## Built with
 * HTML
-
 * CSS
-
 * JavaScript
 
-## Link to quiz
+## Usage
 https://emilypier.github.io/code-quiz/
 
-## Made by
+## Questions
+Made by Emily Pierson.
 
-Emily Pierson
+If you have questions, you can reach me at piersoee@gmail.com.
+
+Visit my [GitHub](https://github.com/emilypier).
