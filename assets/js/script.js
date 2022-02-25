@@ -70,7 +70,7 @@ function timer() {
       endGame();
     }
   }, 1000);
-}
+};
 
 function showQuestion() {
   //question object refers to questions array below
@@ -87,7 +87,7 @@ function showQuestion() {
 
     answerButtonsElement.appendChild(button);
   });
-}
+};
 
 function selectAnswer() {
   const selectedButton = this.value;
@@ -107,18 +107,20 @@ function selectAnswer() {
   } else {
     showQuestion();
   }
-}
+};
 
 function endGame() {
   questionContainerElement.classList.add("hide");
   scoresContainerElement.classList.remove("hide");
   timerElement.classList.add("hide");
   clearInterval(timer); // stops timer
-  loadScores();
-}
+  
+};
 
 //setItem(key, value). save initials to localStorage
 function saveInitials() {
+  scoresContainerElement.setAttribute('class', "hide");
+  document.getElementById('scoresList').classList.remove("hide");
   var initialsInput = document.querySelector("#initials").value;
 
   var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
@@ -132,7 +134,8 @@ function saveInitials() {
   highscores.push(newScore);
 
   window.localStorage.setItem("highscores", JSON.stringify(highscores));
-}
+  loadScores()
+};
 
 //dynamically make score table & load initials and scores
 function loadScores() {
@@ -144,29 +147,29 @@ function loadScores() {
   });
 
   var scoresTable = document.getElementById("scoresTable");
-  var tableRow = document.createElement("tr");
-  var initialsColumn = document.createElement("td");
-  var scoreColumn = document.createElement("td");
-
-  initialsColumn.textContent = "Initials";
-  scoreColumn.textContent = "Score";
-
-  tableRow.append(initialsColumn, scoreColumn);
-  scoresTable.append(tableRow);
 
   highscores.forEach(function (score) {
-    var playerRow = document.createElement("tr");
-    var userInitialsColumn = document.createElement("td");
-    var userScoreColumn = document.createElement("td");
+    var playerRow = document.createElement("li");
 
-    userInitialsColumn.textContent = score.initials;
-    userScoreColumn.textContent = score.score;
-
-    playerRow.append(userInitialsColumn, userScoreColumn);
+    playerRow.textContent = score.initials + ' : ' + score.score;
+    
     scoresTable.append(playerRow);
   });
-  // window.location.reload()
-}
+};
 
 startButton.addEventListener("click", startGame);
 doneButton.addEventListener("click", saveInitials);
+document.getElementById('playAgain').addEventListener('click', function(){
+  window.location.reload(); //reloading page to restart quiz
+});
+
+// hiding elements when highscores button is displayed
+highScoresButton.addEventListener('click', function (){
+  document.getElementById('scoresList').classList.remove("hide");
+  startButton.classList.add("hide");
+  questionContainerElement.classList.add("hide");
+  scoresContainerElement.classList.add("hide");
+  timerElement.classList.add("hide");
+  clearInterval(timer); // stops timer
+  loadScores()
+});
