@@ -2,7 +2,7 @@
 ![MIT license](https://img.shields.io/badge/license-MIT-yellow)
 
 ## Description
-Timed quiz to learn basic web development concepts and saves users' scores and initals into a scoreboard.
+Timed quiz to learn basic web development concepts. The site saves users' scores and initals into a scoreboard.
 
 ![Image of code-quiz.](/assets/code-quiz-screenshot.png)
 
@@ -17,6 +17,6 @@ https://emilypier.github.io/code-quiz/
 ## Questions
 Made by Emily Pierson.
 
-If you have questions, you can reach me at piersoee@gmail.com.
+You can reach me at piersoee@gmail.com.
 
 Visit my [GitHub](https://github.com/emilypier).
